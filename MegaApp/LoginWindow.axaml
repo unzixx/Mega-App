@@ -1,0 +1,36 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:MegaApp"
+        x:Class="MegaApp.LoginWindow" Title="MEGA Login" 
+        Width="400" Height="600" WindowStartupLocation="CenterScreen" 
+        Background="#111" CanResize="False">
+    <StackPanel Margin="30" Spacing="15" VerticalAlignment="Center">
+        <TextBlock Text="MEGA Cloud" FontSize="28" FontWeight="Black" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+        
+        <TextBox x:Name="User" Watermark="Email" Height="45"/>
+        <TextBox x:Name="Pass" Watermark="Jelszó" PasswordChar="*" Height="45"/>
+        
+        <CheckBox x:Name="RememberMe" Content="Adatok megjegyzése" IsChecked="True" Margin="5,0"/>
+        
+        <Button Content="Bejelentkezés" Click="OnLogin" HorizontalAlignment="Stretch" Height="45" Background="#cc0000" FontWeight="Bold"/>
+        
+        <TextBlock x:Name="Err" Foreground="#ff5555" FontSize="12" HorizontalAlignment="Center" TextAlignment="Center" Height="20"/>
+
+        <Separator Height="1" Background="#333" Margin="0,10"/>
+        
+        <TextBlock Text="Mentett fiókok" FontSize="14" Opacity="0.5" Margin="5,0"/>
+        
+        <ListBox x:Name="SavedList" Height="180" Background="Transparent" SelectionChanged="OnAccountSelected">
+            <ListBox.ItemTemplate>
+                <DataTemplate x:DataType="local:SavedAccount">
+                    <Border Background="#222" CornerRadius="12" Margin="0,3" Padding="10">
+                        <Grid ColumnDefinitions="*, Auto">
+                            <TextBlock Text="{Binding Email}" VerticalAlignment="Center" Margin="5,0"/>
+                            <Button Grid.Column="1" Content="Törlés" Click="OnDeleteAccount" Background="#333" Foreground="#ff5555" FontSize="10" Padding="8,3"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </StackPanel>
+</Window>
